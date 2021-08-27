@@ -20,6 +20,8 @@ jobs:
         #  password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:  
       - run: cat artifact.txt
+        store_artifacts:
+          path: ./artifact.txt
   
 # Orchestrate our job run sequence
 workflows:
@@ -31,3 +33,4 @@ workflows:
           name: build
           requires: 
             - test
+          
