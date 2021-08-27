@@ -1,6 +1,7 @@
 version: 2.1
 
 # Define the jobs we want to run for this project
+
 jobs:
   test:
     docker:
@@ -19,12 +20,7 @@ jobs:
         #  username: mydockerhub-user
         #  password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:  
-      - run: |
-        export CIRCLE_TOKEN=':your_token'
-        curl -H "Circle-Token: $CIRCLE_TOKEN" https://circleci.com/api/v1.1/project/:vcs-type/:username/:project/:build_num/artifacts \
-        | grep -o 'https://[^"]*' \
-        | wget --verbose --header "Circle-Token: $CIRCLE_TOKEN" --input-file -
-      - run: cat artifact.txt
+      - run: echo $NAME
   
 # Orchestrate our job run sequence
 workflows:
