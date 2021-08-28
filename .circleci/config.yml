@@ -43,7 +43,7 @@ jobs:
     steps:  
       - attach_workspace:
           at: /tmp/workspace
-      - run: echo artifact.txt
+      - run: cat /tmp/workspace/artifact.txt
   
 # Orchestrate our job run sequence
 workflows:
