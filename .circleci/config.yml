@@ -17,15 +17,21 @@ executors:
         default: latest
     docker:
       - image: cimg/node:<< parameters.tag >>
+    # machine:
+    #   image: ubuntu-1604:201903-01
 
 jobs:
   test:
     executor:
       name: default
       tag: "16.5.0"
-    # resource_class: 2xlarge+
+    # resource_class: 2xlarge+    
     steps:
       - run: echo "from test step" > artifact.txt
+      - persist_to_workspace:
+          root: workspace
+          paths:
+            - testing-output
       - store_artifacts:
           path: ./artifact.txt
   build:
@@ -35,7 +41,9 @@ jobs:
         #  username: mydockerhub-user
         #  password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:  
-      - run: echo $NAME
+      - attach_workspace:
+          at: /tmp/workspace
+      - run: echo artifact.txt
   
 # Orchestrate our job run sequence
 workflows:
