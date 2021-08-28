@@ -20,14 +20,20 @@ executors:
 
 jobs:
   test:
-    executor: default
+    executor: 
+      name: default
+      tag: "16.5.0"
     # resource_class: 2xlarge+
     steps:
       - run: echo "from test step" > artifact.txt
       - store_artifacts:
           path: ./artifact.txt
   build:
-    executor: default
+    docker:
+      - image: cimg/node:16.5.0
+        #auth:
+        #  username: mydockerhub-user
+        #  password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:  
       - run: echo $NAME
   
