@@ -29,7 +29,7 @@ jobs:
     steps:
       - run: echo "from test step" > artifact.txt
       - persist_to_workspace:
-          root: workspace
+          root: ./workspace
           paths:
             - testing-output
       - store_artifacts:
