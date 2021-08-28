@@ -11,7 +11,7 @@ version: 2.1
 
 executors:
   default:
-    paramters:
+    parameters:
       tag:
         type: string
         default: latest
@@ -20,8 +20,9 @@ executors:
 
 jobs:
   test:
-    executor: default
-      # name: default
+    executor:
+      name: default
+      tag: "16.5.0"
     # resource_class: 2xlarge+
     steps:
       - run: echo "from test step" > artifact.txt
@@ -42,7 +43,6 @@ workflows:
     jobs:
       - test:
           name: test
-          tag: "16.5.0"
       - build:
           name: build
           requires: 
