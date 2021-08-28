@@ -22,7 +22,7 @@ jobs:
   test:
     executor: 
       name: default
-      tag: "16.5.0"
+      # tag: "16.5.0"
     # resource_class: 2xlarge+
     steps:
       - run: echo "from test step" > artifact.txt
