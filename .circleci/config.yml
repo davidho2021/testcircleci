@@ -45,7 +45,9 @@ jobs:
           at: ./
       - run: cat ./artifact.txt
   extra:
-    executor: default          
+    executor:
+      name: default
+      tag: "16.5.0"
     steps:
       - run: echo "add extra layer"
 
