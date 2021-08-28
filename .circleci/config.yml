@@ -1,24 +1,33 @@
 version: 2.1
 
-# Define the jobs we want to run for this project
+# commands:
+#   test:
+#     parameters:
+#       to:
+#         type: string
+#         default: "${CIRCLE_USERNAME}"
+#     steps:
+#       - run: echo "Hello << parameters.to >>"
+
+executors:
+  default:
+    paramters:
+      tag:
+        type: string
+        default: latest
+    docker:
+      - image: cimg/node:<< parameters.tag >>
 
 jobs:
   test:
-    docker:
-      - image: cimg/node:16.5.0
-        #auth:
-        #  username: mydockerhub-user
-        #  password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    executor: default
+    # resource_class: 2xlarge+
     steps:
       - run: echo "from test step" > artifact.txt
       - store_artifacts:
           path: ./artifact.txt
   build:
-    docker:
-      - image: cimg/node:16.5.0
-        #auth:
-        #  username: mydockerhub-user
-        #  password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    executor: default
     steps:  
       - run: echo $NAME
   
