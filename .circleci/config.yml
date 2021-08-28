@@ -42,8 +42,8 @@ jobs:
         #  password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:  
       - attach_workspace:
-          at: /tmp/workspace
-      - run: cat /tmp/workspace/artifact.txt
+          at: ./
+      - run: cat ./artifact.txt
   
 # Orchestrate our job run sequence
 workflows:
