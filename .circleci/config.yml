@@ -32,8 +32,8 @@ jobs:
           root: ./
           paths:
             - artifact.txt
-      - store_artifacts:
-          path: ./artifact.txt
+      # - store_artifacts:
+      #     path: ./artifact.txt
   build:
     docker:
       - image: cimg/node:16.5.0
@@ -51,6 +51,10 @@ workflows:
     jobs:
       - test:
           name: test
+      - extra:
+          executor: default          
+          steps:
+            - run: echo "add extra layer"
       - build:
           name: build
           requires: 
