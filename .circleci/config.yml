@@ -51,10 +51,10 @@ workflows:
     jobs:
       - test:
           name: test
-      - extra:
-          executor: default          
-          steps:
-            - run: echo "add extra layer"
+      - name: extra
+        executor: default          
+        steps:
+          - run: echo "add extra layer"
       - build:
           name: build
           requires: 
