@@ -45,7 +45,7 @@ jobs:
     steps:  
       - attach_workspace:
           at: ./
-      - run: cat ./test/artifact.txt
+      - run: cat ./artifact.txt
   extra:
     executor:
       name: default
