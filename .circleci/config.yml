@@ -44,17 +44,19 @@ jobs:
       - attach_workspace:
           at: ./
       - run: cat ./artifact.txt
-  
+  extra:
+    executor: default          
+    steps:
+      - run: echo "add extra layer"
+
 # Orchestrate our job run sequence
 workflows:
   build_and_test:
     jobs:
       - test:
           name: test
-      - name: extra
-        executor: default          
-        steps:
-          - run: echo "add extra layer"
+      - extra:
+          name: extra
       - build:
           name: build
           requires: 
